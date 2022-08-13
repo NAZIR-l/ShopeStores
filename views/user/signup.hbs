@@ -1,0 +1,40 @@
+<div class="overlay-form" style="padding : 5px ;">
+  <h1>Create a new account</h1> <br>
+  <p>Join our community. Let's set up your account</p>
+  {{#each massages}}
+    <div class="alert alert-danger" role="alert">
+ {{this}}
+</div>
+  {{/each}}
+ <form action="signup" method="post">
+  <div class="form-element">
+    <label for="Name">Fullname</label>
+    <input type="text" name="names">
+  </div>
+  <div class="form-element">
+    <label for="email">Email</label>
+    <input type="email" name="email">
+  </div>
+  <div class="form-element">
+    <label for="password-1">Password</label>
+    <input type="password" name="password">
+  </div>
+  <div class="form-element">
+    <label for="password-2">Confirm password</label>
+    <input type="password" name="confirmpassword">
+  </div>
+ <input type="hidden" name="_csrf" value="{{token}}">
+
+  <div class="form-element">
+    <button  style="border-style: dotted;"  type="submit">Signup</button>
+  </div>
+
+  
+  </form>
+</div>
+<script>
+   function toggleForm(){
+    document.body.classList.toggle('activeForm');
+  }
+
+</script>

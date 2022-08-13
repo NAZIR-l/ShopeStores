@@ -1,0 +1,290 @@
+
+
+---------------------------------------------------
+        <div class="card">
+    <div class="text-center">
+        <img src="{{this.imagePath}}" class="card-img-top" alt="">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{this.productName}}</h5>
+        <p class="card-text"> 
+                     <p>{{this.information}} </p>
+        </p>
+        <div>
+            <div class="price" style="float:left">{{this.price}}</div>
+            <a href="#" class="btn btn-success " style="float:right">BUY</a>
+        </div>
+    </div>
+</div>
+
+---------------------------------------------------
+  storageCapacity:String,
+                numberOfSIM:String,
+                camera:String,
+                displaySize:String   
+
+---------------------------------------------------
+    <div class="col-4">
+    <div class="cart" >
+        <div class="mor" style="margin:18px; "> 
+  <form action="signup" method="post">
+      <table>
+          <tr><td>
+ <div class="form-group"  style=" ">
+         <label for="name">name :</label>
+        <input type="text" name="name" placeholder="enter your name " style="font-size: 20px;">
+    </div>
+          </td></tr>
+          <tr><td>
+     <div class="form-group">
+      <label for="email     ">email    :</label>
+        <input type="email" name="email"placeholder="enter your email">
+    </div>
+          </td></tr>
+
+          <tr><td>
+               <div class="form-group">
+         <label for="passwors">passwors :</label>
+        <input type="passwors" name="passwors" placeholder="enter your password">
+    </div>
+          </td></tr>
+
+          <tr><td>
+               <div class="form-group">
+        <label for="confpasswors">confpasswors</label>
+        <input type="passwors" name="confpasswors"placeholder="enter the password again">
+    </div>
+          </td></tr>
+       <tr><td>
+              <button type="submit" class="btn btn-primary" style="float: right; ">signUp</button> 
+       </td></tr>  
+</table>
+</form>
+</div>
+</div>
+</div>
+---------------------------------------------------
+
+
+        {{#each productes}}
+                <div>
+                    ID :{{this._id}}
+                </div>
+                <div>
+                    Name :{{this.productName}}
+                </div>
+                <div>
+                    email :{{this.price}}
+                </div>
+                <br>
+                <br>
+                {{/each}}
+  
+  
+            <div class="card">
+                <div class="imagbox">
+                    <img src="{{productes.imagPath}}" alt="">
+                </div>
+                <div class="content">
+                    <div class="details">
+                        <h2>###<br><span>####</span></h2>
+                        <ul class="social_icons">
+                            <li><a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                            <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="#" onclick="funo()"><i class='bx bx-heart'></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        
+
+      
+           ----------------------------------
+            
+     
+
+
+
+---------------------------------------------------
+{
+            storageCapacity: '46G' ,
+            numberOfSIM: 'Dual SIM',
+            camera:'16GB',
+            displaySize:'6.5'
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+     ---------------------------------------------------
+     <body>      
+       {{#each producted}}
+        <div class="home_content">
+            <div class="container">
+     <div class="card">
+         <p> {{this.imagePath}}</p>
+         {{#each this}}
+             
+      
+                <div class="cardinfo">
+                     <p>{{{this.information.storageCapacity}}} </p>
+                     <p>{{producted.information.numberOfSIM}} </p>
+                     <p>{{producted.information.camera}} </p>
+                     <p>{{this.information.displaySize}} </p>
+
+                </div>
+                <div class="imagbox">
+                    <img src="{{this.imagePath}}" alt="">
+                </div>
+                <div class="content">
+                    <div class="details">
+                        <h2>{{this.productName}}<br><span>{{this.price}}</span></h2>
+                        <ul class="social_icons">
+                            <li><a href="" class="hero"><i class="bi bi-info-square-fill ">i</i></a></li>
+                            <li><a href=""><i class="fa fa-facebook-official"></i></a></li>
+
+                            <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="#" onclick="funo()"><i class='bx bx-heart'></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                   {{/each}}
+              </div>
+             
+                  
+  
+  </div>
+
+   
+       </div>
+  
+       {{/each}} 
+       
+    
+ 
+    
+
+</body>
+--------
+var express = require('express');
+var router = express.Router();
+const { check, validationResult } = require('express-validator');
+const User = require('../model/User');
+// mongoose.Types.ObjectId.isValid("your id");
+const passport = require('passport');
+const bcrypt = require('bcrypt');
+
+const { authenticate } = require('passport');
+
+
+/* GET users listing. */
+router.get('/signup', function (req, res, next) {
+  var massagError = req.flash('error');
+  res.render('user/signup',{massages :massagError})
+});
+
+/// 
+// doing validation on the form 
+router.post('/signup', [
+  check('name').not().isEmpty().withMessage('please inter your name'),
+  check('email').not().isEmpty().withMessage('please inter your email'),
+  check('email').isEmail().withMessage('enter valid email'),
+  check('password').not().isEmpty().withMessage('please inter your password'),
+  check('password').isLength({ min: 5 }).withMessage('please inter your more then password'),
+  check('confirmpassword').custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error('password and confirm not matched');
+    }
+    return true;
+  })
+], async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+  
+var validationmassage =[];// for express- session
+for (let i = 0; i < errors.errors.length; i++) {// for express- session
+  validationmassage.push(errors.errors[i].msg);// for express- session
+  // for express- session
+}// for express- session
+console.log(validationmassage);// for express- session
+req.flash('error',validationmassage);// for express- session
+res.redirect('signup')// for express- session
+    return;
+  }
+bcrypt.genSalt(10,function(error , salt){
+  bcrypt.hash(req.body.password,salt,function(error,hash){
+
+  
+  const user = new User({// for insert User
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password
+  })// for insert User
+  User.findOne({ email: req.body.email }, (error, result) => { // for know the user exist or not
+    if (error) {
+      console.log(error);
+    }
+    if (result) {
+      console.log("this email is already exist")
+      return;
+    }// for know the user exist or not
+    user.save((error, result) => {// for save the input from the insert
+      if (! error) {
+        res.send(result);
+        return res.send({status:'user creatrd'})
+      }
+      else{
+        if(err.name =='validationError'){
+          res.statusCode=400;
+        return res.send({error:'Bad request'})
+      }
+          else{
+            res.statusCode=500;
+            return res.send({error:'internal server error'})
+         
+
+        }
+      }
+      
+    });
+
+  });
+    
+});
+});
+
+
+});
+
+// sign in ............................................... PSSPORT LOCAL
+router.get('/signin',(req,res,next)=>{
+  
+  res.render('user/signin');
+
+});
+router.post('/signin',passport.authenticate('local-signin',{
+  successRedirect:'',
+  failureRedirect:'/signin',
+  failureFlash: true ,
+}))
+
+
+
+
+
+module.exports = router;
+

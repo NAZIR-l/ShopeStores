@@ -1,0 +1,32 @@
+<div class="overlay-form" style="padding : 5px ;">
+  <h1>Create a new account</h1> <br> 
+  <p>Join our community. Let's set up your account</p>
+  {{#each massages}}
+    <div class="alert alert-danger" role="alert">
+ {{this}}
+</div>
+  {{/each}}
+ <form action="signin" method="POST">
+ 
+  <div class="form-element">
+    <label for="email">Email</label>
+    <input type="email" name="email">
+  </div>
+  <div class="form-element">
+    <label for="password-1">Password</label>
+    <input type="password" name="password">
+  </div>
+  {{!-- for csrf its use for check if the get from the same website or not should talk the name _csrf  --}}
+ <input type="hidden" name="_csrf" value="{{token}}">
+ 
+  <div class="form-element" >
+    <button  style="border-style: dotted;" type="submit">SignIn</button>
+  </div>
+ 
+  </form>
+</div>
+<script>
+   function toggleForm(){
+    document.body.classList.toggle('activeForm');
+  }
+</script>

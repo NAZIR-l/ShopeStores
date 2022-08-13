@@ -1,0 +1,20 @@
+ <nav class="navbar" id="navbar">
+        <a href="/" class="brand">Brand Name</a>
+        <ul class="ul">
+            <li class="li"><a href="" class="te">Home</a></li>
+            <li class="li"><a href="" class="te">About</a></li>
+            <li class="li"><a href="" class="te">Services</a></li>
+            <li class="li"><a href="" class="te">Protfolio</a></li>
+         
+               {{#if checkUser}}
+               {{else}}
+                     <li class="li"></li>
+                       <a href="{{signhref}}" class="te">
+                 <i class="bi bi-box-arrow-right"></i>
+                {{sign}}</a>
+                </li>
+               {{/if}}
+               
+
+        </ul>
+    </nav>

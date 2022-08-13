@@ -1,0 +1,77 @@
+      <div class="alert alert-danger align-items-center text-center" style="display: none;" id="incres" role="alert">
+  <svg class="bi flex-shrink-0 me-2" width="24" height="24"  role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+  <div>
+    Cannot increas
+  </div>
+</div>
+<table class="table table-dark" style="margin: 20px;">
+  <thead>
+      <tr>
+      <th scope="row">#</th>
+      <td class="text-center">Product Name</td>
+      <td class="text-center"> Quantity</td>
+      <td class="text-center">price</td>
+      <td class="text-center">Delete</td>
+      
+    </tr>
+  </thead>
+
+	
+{{#each usercart as |val index|}}
+	 <tr >
+      <th scope="row" class="text-center" style="padding-top: 25px;">{{index}}</th>
+      <td class="table-active text-center" style="padding-top: 25px;">{{this.name}}</td>
+
+      <td class="text-center">
+        
+        {{#if (checkMinus @val.quantity)}}
+     
+     
+        <button style="background-color: #212529;border: none;" onmousedown="document.getElementById('incres').style.display='flex'">
+           <a href="#" class="btns disable"> - </a>
+           </button>
+        
+        {{else}}
+           <a href="/decreasProduct/{{index}}" class="btns "> - </a>
+        {{/if}}
+       
+        {{this.quantity}}
+       <a href="/increasProduct/{{index}}" class="btns" >+</a>
+
+       
+       
+      </td>
+      <td class="table-active text-center " style="padding-top: 25px;"> {{this.price}} $</td> 
+      <td class="table-active text-center bxs">
+        <a href="/deleteProduct/{{index}}"> 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash bxes" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg>
+        </a>
+      </td> 
+
+      
+	   </tr> 
+
+{{/each}}
+
+ <tr >
+      <td colspan="3" >Total price : {{usercartP}}  $</td>
+      <td>Total Quantity : {{usercartQ}}</td>
+      {{#if deleatall}}
+         <td class="table-active text-center ">
+           <a href="/deleteProduct_all">   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg></td></a>
+        
+      {{/if}}
+     
+    
+    </tr>
+</table>
+<div class="text-center ">
+
+<a href="/checkout" class="btn btn-primary">Payment</a>
+</div>

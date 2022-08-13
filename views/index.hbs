@@ -1,0 +1,38 @@
+{{#each product}}
+{{!-- for out the checkUser one level (the for loop one level(../checkUser) and nested loop(../../checkUser) anther
+level) {{!-- <p> checkUser :{{../checkUser}}</p> --}}
+<div class="row ">
+    {{#each this}}
+    <div class="col-sm-4">
+        <div class="card  ">
+            <div class="cardinfo">
+                <p>{{this.information}} </p>
+            </div>
+            <div class="imagbox">
+                <img src="{{this.imagePath}}" class="card-img-top" alt="">
+            </div>
+            <div class="content">
+                <div class="details">
+                    <h2>{{this.productName}}<br><span>{{this.price}}</span></h2>
+                    <ul class="social_icons">
+                        <li><a href="" class="hero"><i class="bi bi-info-square-fill ">i</i></a></li>
+                        <li><a href=""><i class="fa fa-facebook-official"></i></a></li>
+
+                        {{#if ../../checkUser}}
+                        <li><a href="/addTocart/{{this._id}}/{{this.price}}/{{this.productName}}"><i
+                                    class="bx bx-cart-alt" aria-hidden="true"></i></a></li>
+                        {{else}}
+                        <li><a href="users/signin"><i class="bx bx-cart-alt" aria-hidden="true"></i></a></li>
+                        {{/if}}
+
+                        <li><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="#" onclick="funo()"><i class='bx bx-heart'></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {{/each}}
+</div>
+{{/each}}

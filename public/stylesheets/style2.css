@@ -1,0 +1,209 @@
+body {
+  margin:0px;
+  font-family:"Open Sans",sans-serif;
+  background:#ddd;
+}
+.overlay-form {
+  position:absolute;
+  top:10vh;
+  left:10px;
+  width:70vw;
+/*     height:70; */
+  background:rgba(0,0,0,0.8);
+
+  padding:80px 100px;
+  overflow-x:visible;
+  overflow-y:visible;
+  box-sizing:border-box;
+}
+.overlay-form .close-btn {
+  position:absolute;
+  top:20px;
+  right:40px;
+  color:#fff;
+  font-size:40px;
+  font-weight:600;
+  cursor:pointer;
+}
+.overlay-form h1 {
+  font-size:32px;
+  color:#fff;
+}
+.overlay-form p {
+  font-size:16px;
+  color:#eee;
+  margin:-15px 0px 30px;
+}
+.overlay-form .form-element {
+  margin:20px 0px;
+}
+.overlay-form label {
+  display:block;
+  font-size:17px;
+  color:#eee;
+  margin-bottom:5px;
+}
+.overlay-form input {
+  width:100%;
+  padding:6px;
+  font-size:17px;
+  border:2px solid #eee;
+  background:transparent;
+  outline:none;
+  border-radius:10px;
+}
+.overlay-form button,
+.center button {
+  margin-top:10px;
+  width:100px;
+  height:35px;
+  font-size:15px;
+  text-transform:uppercase;
+  background:#fff;
+  color:#222;
+  border:none;
+  outline:none;
+  border-radius:10px;
+}
+.center {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.center button {
+  width:150px;
+  height:40px;
+  font-weight:600;
+  box-shadow:3px 3px 2px 1px rgba(0,0,0,0.1);
+  cursor:pointer;
+}
+ 
+body.activeForm .overlay-form {
+  z-index:2;
+  opacity:1;
+  top:0px;
+  height:100vh;
+  transition: top 500ms ease-in-out,
+              opacity 500ms ease-in-out,
+              height 0ms ease-in-out 0ms;
+}
+/*---------------------------------------------*/
+.cart{
+  display: inline;
+
+  background-color: #294d69;
+  width: 400px;
+  border-radius: 20%;
+  color: azure;
+  align-items: center;
+  position:absolute;
+  left:370px;
+  top: 120px;
+  height: 400px;
+}
+.mor{
+  position:absolute;
+   transform: translateX(-50%);
+transform: translatey(0%);
+
+  justify-content:center;
+  align-items:center;
+}
+.form-group{
+ margin:20px;
+}
+
+.social_icons li .informa
+{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-decoration: none;
+  font-size: 1.5em;
+  color: azure;
+  background: #294d69;
+  transition: 0.9s;
+
+}
+.social_icons li div:hover
+{
+  transform: rotate(360deg);
+  background: #03a9f4;
+  
+}
+/* .information{
+  display: none;
+}*/
+.cardinfo{
+  display: none;
+}
+.cardinfo.actiones{
+  display:inline;
+  width:310px;
+  position:relative;
+  background:#2e2e2e9c;
+  height:235px;
+
+  border-radius:10%;
+  z-index:1000000;
+}
+.cardinfo.actiones p{
+ text-align:center;
+ color:aliceblue;
+}
+/*
+.hero.actiones .cardinfo{
+  display: flex;
+  position: absolute;
+ width: 150px;
+ color:white;
+
+  ----------------- overflow: scroll; 
+  bottom: 180%;
+
+ left: 80px;
+ border-radius:20px;
+
+ z-index: 100000;
+
+ overflow:visible;
+ min-height:150px;
+  background:#084298;
+}
+
+.hero.actiones .cardinfo p {
+   align-items:center;
+ color: #ffff;
+  text-align: center;
+} */
+.form-element a{
+width: 100px;
+display: block;
+align-items: center;
+text-align: center;
+position: relative;
+top: -57px;
+left: 485px;
+border-style: dotted;
+text-decoration: none;
+height: 35px;
+background: #fff;
+color: #222;
+border-radius: 10px;
+}
+#neg{
+color:white;
+position:absolute;
+left:22px;
+top:-9px;
+height:20px
+
+}
+.cart_product{
+text-align:center;
+
+}
